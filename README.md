@@ -1,4 +1,4 @@
-#Webshop API Backend (Mechhive Assignment)
+# Webshop API Backend (Mechhive Assignment)
 This is a simple backend API for a webshop, built with Java Spring Boot.
 
 This application fetches product and currency data from external dummy APIs, caches this data in Redis, and provides two main endpoints:
