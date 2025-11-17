@@ -40,10 +40,9 @@ Java Development Kit (JDK) 17 or newer
 Docker Desktop
 
 2. Clone the Repository
-Bash
 
 # Clone this repository to your local machine
-git clone <your-github-repo-url>
+git clone https://github.com/slimjanpot/Backend-Developer-Assignment.git
 
 # Navigate into the project directory
 cd webshop-api
@@ -53,8 +52,6 @@ The application requires a Redis instance for caching.
 Make sure Docker Desktop is open and running on your machine.
 
 In your terminal, run the following command to pull and start the official Redis container:
-
-Bash
 
 docker run -d --name my-webshop-redis -p 6379:6379 redis
 -d runs the container in the background.
@@ -68,19 +65,14 @@ docker run -d --name my-webshop-redis -p 6379:6379 redis
 4. Run the Spring Boot Application
 This project uses the Maven Wrapper (mvnw), so you don't need to have Maven installed separately.
 
-On macOS / Linux:
-
-Bash
-
+###On macOS / Linux:
 ./mvnw spring-boot:run
 On Windows (PowerShell):
-
-Bash
 
 .\mvnw.cmd spring-boot:run
 The application will start on http://localhost:8080. You will see startup logs confirming the cache is being cleared and then populated.
 
-✅ How to Test & Verify All Requirements
+##How to Test & Verify All Requirements
 Here is how to test that the application meets all the assignment's requirements. An API client like Postman is recommended.
 
 1. Requirement: Get Products in any Currency
@@ -92,13 +84,13 @@ Make another GET request to http://localhost:8080/products?currency=JPY
 
 Verification:
 
-✅ The request returns a Status 200 OK.
+The request returns a Status 200 OK.
 
-✅ The JSON response shows a list of products.
+The JSON response shows a list of products.
 
-✅ Each product includes the purchasePrice, salePrice, and the correct currency code ("USD" or "JPY").
+Each product includes the purchasePrice, salePrice, and the correct currency code ("USD" or "JPY").
 
-✅ The prices are different for each currency, proving conversion and the 10% fee calculation are working.
+The prices are different for each currency, proving conversion and the 10% fee calculation are working.
 
 2. Requirement: Create a Transaction
 Test:
@@ -120,13 +112,13 @@ JSON
 }
 Verification:
 
-✅ The request returns a Status 200 OK.
+The request returns a Status 200 OK.
 
-✅ The JSON response is a TransactionReceipt.
+The JSON response is a TransactionReceipt.
 
-✅ It correctly shows "totalItems": 3.
+It correctly shows "totalItems": 3.
 
-✅ It shows totalPurchasePrice and totalSalePrice calculated correctly and converted to "USD".
+It shows totalPurchasePrice and totalSalePrice calculated correctly and converted to "USD".
 
 3. Requirement: Caching & 5-Minute Refresh
 Test:
@@ -137,9 +129,9 @@ Wait for 5 minutes.
 
 Verification:
 
-✅ On startup, logs appear: --- [STARTUP] Clearing entire Redis cache... --- followed by --- [STARTUP] Populating cache... ---.
+On startup, logs appear: --- [STARTUP] Clearing entire Redis cache... --- followed by --- [STARTUP] Populating cache... ---.
 
-✅ After 5 minutes, new logs appear automatically: Fetching products from API... and Fetching conversion rates from API.... This confirms the @Scheduled task is running.
+After 5 minutes, new logs appear automatically: Fetching products from API... and Fetching conversion rates from API.... This confirms the @Scheduled task is running.
 
 4. Requirement: Response Time < 100ms
 Test:
@@ -150,15 +142,15 @@ Look at the "Time" metric in the Postman response panel.
 
 Verification:
 
-✅ The response time is very low (e.g., 25ms - 50ms), well below the 100ms requirement. This proves the data is being served from the fast Redis cache, not the slow external APIs.
+The response time is very low (e.g., 25ms - 50ms), well below the 100ms requirement. This proves the data is being served from the fast Redis cache, not the slow external APIs.
 
 5. Requirement: Multilayered Architecture & Clean Code
 Verification:
 
-✅ The project is organized into controller, service, model, and config packages, demonstrating a clean, multilayered architecture.
+The project is organized into controller, service, model, and config packages, demonstrating a clean, multilayered architecture.
 
-✅ Controllers are thin and only handle web requests.
+Controllers are thin and only handle web requests.
 
-✅ Services contain all business logic (caching, calculations).
+Services contain all business logic (caching, calculations).
 
-✅ Models (DTOs) are used to define clear data contracts for requests and responses.
+Models (DTOs) are used to define clear data contracts for requests and responses.

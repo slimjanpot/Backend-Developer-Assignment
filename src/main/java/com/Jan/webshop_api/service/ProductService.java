@@ -65,9 +65,12 @@ public class ProductService {
         enriched.setDescription(product.getDescription());
         enriched.setCategory(product.getCategory());
         enriched.setImage(product.getImage());
-        enriched.setPurchasePrice(originalEurPrice * conversionRate);
-        enriched.setSalePrice(salePriceEur * conversionRate);
+        enriched.setPurchasePrice(roundToTwoDecimals(originalEurPrice * conversionRate));
+        enriched.setSalePrice(roundToTwoDecimals(salePriceEur * conversionRate));
         enriched.setCurrency(currencyCode.toUpperCase());
         return enriched;
     }
+    private double roundToTwoDecimals(double value) {
+    return Math.round(value * 100.0) / 100.0;
+}
 }

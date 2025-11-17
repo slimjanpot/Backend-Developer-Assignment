@@ -76,8 +76,8 @@ public class TransactionService {
             receipt.setCurrency(request.getCurrency().toUpperCase());
             receipt.setTotalItems(totalItems);
             receipt.setProductsPurchased(purchasedProducts);
-            receipt.setTotalPurchasePrice(totalPurchasePrice * conversionRate);
-            receipt.setTotalSalePrice(totalSalePrice * conversionRate);
+            receipt.setTotalPurchasePrice(roundToTwoDecimals(totalPurchasePrice * conversionRate));
+            receipt.setTotalSalePrice(roundToTwoDecimals(totalSalePrice * conversionRate));
 
             return receipt;
 
@@ -85,5 +85,8 @@ public class TransactionService {
             // If the JSON parsing fails, throw an error
             throw new RuntimeException("Could not create transaction: " + e.getMessage(), e);
         }
+    }
+    private double roundToTwoDecimals(double value) {
+        return Math.round(value * 100.0) / 100.0;
     }
 }
