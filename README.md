@@ -7,7 +7,7 @@ An endpoint to get a list of all products, with a 10% fee added and prices conve
 
 An endpoint to simulate a transaction for multiple products in a specified currency.
 
-##Features
+## Features
 Product Enrichment: Automatically adds a 10% sales fee to all products and serves them in any currency.
 
 Transaction Simulation: A POST endpoint to "buy" multiple items at once and receive a final receipt.
@@ -16,7 +16,7 @@ Dynamic Caching: Fetches and caches product lists and currency rates on startup 
 
 Robust & Fast: Uses a plain String-based Redis cache for stability and to ensure all API responses are well under the 100ms requirement.
 
-##Tech Stack
+## Tech Stack
 Java 17/21
 
 Spring Boot 3
@@ -27,7 +27,7 @@ Redis (for caching)
 
 Docker (to run Redis)
 
-##Setup & Running Instructions
+## Setup & Running Instructions
 Follow these steps to get the application running on your local machine.
 
 1. Prerequisites
@@ -41,11 +41,12 @@ Docker Desktop
 
 2. Clone the Repository
 
-# Clone this repository to your local machine
+### Clone this repository to your local machine
 git clone https://github.com/slimjanpot/Backend-Developer-Assignment.git
 
-# Navigate into the project directory
+### Navigate into the project directory
 cd webshop-api
+
 3. Start the Redis Cache (via Docker)
 The application requires a Redis instance for caching.
 
@@ -65,14 +66,15 @@ docker run -d --name my-webshop-redis -p 6379:6379 redis
 4. Run the Spring Boot Application
 This project uses the Maven Wrapper (mvnw), so you don't need to have Maven installed separately.
 
-###On macOS / Linux:
+### On macOS / Linux:
 ./mvnw spring-boot:run
-On Windows (PowerShell):
 
+### On Windows (PowerShell):
 .\mvnw.cmd spring-boot:run
+
 The application will start on http://localhost:8080. You will see startup logs confirming the cache is being cleared and then populated.
 
-##How to Test & Verify All Requirements
+## How to Test & Verify All Requirements
 Here is how to test that the application meets all the assignment's requirements. An API client like Postman is recommended.
 
 1. Requirement: Get Products in any Currency
